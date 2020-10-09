@@ -4,9 +4,8 @@ var generateBtn = document.querySelector("#generate");
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-//ARRAYS OR VARIABLE STRINGS
-var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var special = ["!", "%", "&", ",", "*", "+", "-", ".", "/", "<", ">", "?", "~"];
+//ARRAYS FOR CRITERIA
+
 var lower = [
   "a",
   "b",
@@ -64,12 +63,15 @@ var upper = [
   "Z",
 ];
 
+var numberic = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var special = ["@", "#", "!", "%", "^", "&", ",", "*", "(", ")", "<", ">", "?",];
+
 //VARIABLES - to confirm with characteristics of password
 var confirmLength = "";
-var confirmSpecial;
 var confirmNumeric;
-var confirmUpperCase;
-var confirmLowerCase;
+var confirmSpecial;
+var confirmUpper;
+var confirmLower;
 
 //FUNCTIONS FOR LENGTH
 
@@ -78,7 +80,7 @@ function generatePassword() {
 
   //LOOP TO CLARIFY CHARACTER LENGTH - CONFIRM LENGTH
 
-  while (confirmLength <= 8 || confirmLength >= 128) {
+  if (confirmLength <= 8 || confirmLength >= 128) {
     alert("Password must be between 8 and 128 characters long");
     var confirmLength = prompt("How long do you want your password?");
   }
@@ -97,12 +99,13 @@ function generatePassword() {
   );
 
   //NEED A VALUE - RUN AGAIN IF ALL FALSE
-  while (
+  if (
     confirmSpecial === false &&
     confirmNumeric === false &&
     confirmLower === false &&
     confirmUpper === false
   ) {
+    //rRERUN CONFIRM ON CRITERIA IF VALUES ARE FALSE
     alert("Please pick a number or spacial value");
     var confirmSpecial = confirm(
       "Click OK for special characters in your password"
@@ -115,8 +118,18 @@ function generatePassword() {
       "Click OK for upper case letters in your password"
     );
   }
+  //PASSWORD CONFIRMS ASSIGNED VALUE - consitionals in a loop until request is met
+  var password = [];
+
+  // I KNOW I NEED A FOR LOOP WITH THE MATH AND MATH FLOOR FROM 
+
+  for (var i = 0; i < confirmLength; i++) {
+    
+  }
+
+  //NEED TO CREATE SOME SORT OF FOR LOOP AND VARIABLE TO CAPTURE THE CONFIRM DATA
+  return password;
 }
-//PASSWORD CONFIRMS ASSIGNED VALUE
 
 // Write password to the #password input
 function writePassword() {
