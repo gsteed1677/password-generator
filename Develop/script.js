@@ -4,8 +4,7 @@ var generateBtn = document.querySelector("#generate");
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-//ARRAYS FOR CRITERIA
-
+//ARRAYS FOR CRITERIA - lower, upper, numeric, special signs
 var lower = [
   "a",
   "b",
@@ -63,74 +62,66 @@ var upper = [
   "Z",
 ];
 
-var numberic = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var special = ["@", "#", "!", "%", "^", "&", ",", "*", "(", ")", "<", ">", "?",];
+var numeric = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+var special = ["!","@", "#", "%", "^", "&", "*", "(", ")", "<", ">", "?",];
 
 //VARIABLES - to confirm with characteristics of password
 var confirmLength = "";
-var confirmNumeric;
-var confirmSpecial;
-var confirmUpper;
-var confirmLower;
+//PASSWORD CONFIRMS ASSIGNED VALUE - consitionals in a loop until request is met
+var password = [];
+var userSetChars = [];
 
 //FUNCTIONS FOR LENGTH
-
 function generatePassword() {
   var confirmLength = prompt("How long do you want your password?");
-
-  //LOOP TO CLARIFY CHARACTER LENGTH - CONFIRM LENGTH
+ //IF STATEMENT TO CREATE LOOP OF CERTAIN AMOUNT OF LENGTH - ConfirmLength needed - 8/128
 
   if (confirmLength <= 8 || confirmLength >= 128) {
     alert("Password must be between 8 and 128 characters long");
     var confirmLength = prompt("How long do you want your password?");
   }
 
+
   //CONFIRM  FUNCTION FOR LOWERCASE, NUMERIC, SPECIAL CHARACTERS
-
-  var confirmSpecial = confirm(
-    "Click OK for special characters in your password"
-  );
-  var confirmNumeric = confirm("Click OK to add numbers to your password");
-  var confirmLower = confirm(
-    "Click OK for lower case letters in your password"
-  );
-  var confirmUpper = confirm(
-    "Click OK for upper case letters in your password"
-  );
-
-  //NEED A VALUE - RUN AGAIN IF ALL FALSE
-  if (
-    confirmSpecial === false &&
-    confirmNumeric === false &&
-    confirmLower === false &&
-    confirmUpper === false
-  ) {
-    //rRERUN CONFIRM ON CRITERIA IF VALUES ARE FALSE
-    alert("Please pick a number or spacial value");
-    var confirmSpecial = confirm(
-      "Click OK for special characters in your password"
-    );
-    var confirmNumeric = confirm("Click OK to add numbers to your password");
-    var confirmLower = confirm(
-      "Click OK for lower case letters in your password"
-    );
-    var confirmUpper = confirm(
-      "Click OK for upper case letters in your password"
-    );
+  let nChars = confirm("Press Ok to add numbers to your password");
+  if (nChars) {
+    userSetChars.push(...numeric);
   }
-  //PASSWORD CONFIRMS ASSIGNED VALUE - consitionals in a loop until request is met
-  var password = [];
+  console.log(userSetChars)
+
+  let uChars = confirm("Press ok to add upper case letters to your password");
+  if (uChars) {
+    userSetChars.push(...upper);
+  }
+  console.log(userSetChars)
+
+  let lChars = confirm("Press Ok to add lower case letters to your password");
+  if (lChars) {
+    userSetChars.push(...lower);
+  }
+  console.log(userSetChars)
+
+  let sChars = confirm("Press Ok to add special characters to your password")
+  if (sChars) {
+    userSetChars.push(...special);
+  } else { alert("You have to choose at least one set parameter if you want a secure password!");
+  }
+  console.log(userSetChars)
+
+
 
   // I KNOW I NEED A FOR LOOP WITH THE MATH AND MATH FLOOR FROM 
 
   for (var i = 0; i < confirmLength; i++) {
-    
+  password.push(userSetChars[Math.floor(Math.random() * userSetChars.length)]);
+    console.log(password.join("+"));
   }
 
-  //NEED TO CREATE SOME SORT OF FOR LOOP AND VARIABLE TO CAPTURE THE CONFIRM DATA
-  return password;
-}
+  // RETURN PASSWORD VALUE AND JOIN CRITERIA TOGETHER
+  return password.join("")
 
+
+}
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
