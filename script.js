@@ -82,35 +82,44 @@ function generatePassword() {
   }
 
 
+  //VARIABLE FOR FALSE IF NO CRITERIA IS PICKED
+  var hasParameter = false;
+  
   //CONFIRM  FUNCTION FOR LOWERCASE, NUMERIC, SPECIAL CHARACTERS
   let nChars = confirm("Press Ok to add numbers to your password");
   if (nChars) {
     userSetChars.push(...numeric);
+    hasParameter = true;
   }
   //CONSOLE LOG TO MAKE SURE EACH STEP WAS WORKING 
-  //NEED TO LOOK INTO ... MORE - TUTOR WAS HELPFUL BUT NEED TO UNDERSTAND MORE
+  //NEED TO LOOK INTO ... MORE - TUTOR WAS HELPFUL BUT NEED TO UNDERSTAND MORE AND WORK WITH IT MORE
   console.log(userSetChars)
 
   let uChars = confirm("Press ok to add upper case letters to your password");
   if (uChars) {
     userSetChars.push(...upper);
+    hasParameter = true;
   }
   console.log(userSetChars)
 
   let lChars = confirm("Press Ok to add lower case letters to your password");
   if (lChars) {
     userSetChars.push(...lower);
+    hasParameter = true;
   }
   console.log(userSetChars)
-  // ADDED AN ALERT TO INFORM USER TO PICK ONE CRITERIA, WILL HAVE TO START THE PROCESSES AGAIN
+  
   let sChars = confirm("Press Ok to add special characters to your password")
   if (sChars) {
     userSetChars.push(...special);
-  } else { alert("You have to choose at least one set parameter if you want a secure password! Press the button again to try again!");
+    hasParameter = true;
+  } 
+  // ADDED AN ALERT TO INFORM USER TO PICK ONE CRITERIA, WILL HAVE TO START THE PROCESSES AGAIN
+  if(hasParameter === false){
+    alert("You have to choose at least one set parameter if you want a secure password! Press the button again to try again!");
   }
   console.log(userSetChars)
-
-
+  
 
   // I KNOW I NEED A FOR LOOP WITH THE MATH AND MATH FLOOR FROM 
 
