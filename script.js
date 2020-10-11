@@ -87,6 +87,8 @@ function generatePassword() {
   if (nChars) {
     userSetChars.push(...numeric);
   }
+  //CONSOLE LOG TO MAKE SURE EACH STEP WAS WORKING 
+  //NEED TO LOOK INTO ... MORE - TUTOR WAS HELPFUL BUT NEED TO UNDERSTAND MORE
   console.log(userSetChars)
 
   let uChars = confirm("Press ok to add upper case letters to your password");
@@ -100,11 +102,11 @@ function generatePassword() {
     userSetChars.push(...lower);
   }
   console.log(userSetChars)
-
+  // ADDED AN ALERT TO INFORM USER TO PICK ONE CRITERIA, WILL HAVE TO START THE PROCESSES AGAIN
   let sChars = confirm("Press Ok to add special characters to your password")
   if (sChars) {
     userSetChars.push(...special);
-  } else { alert("You have to choose at least one set parameter if you want a secure password!");
+  } else { alert("You have to choose at least one set parameter if you want a secure password! Press the button again to try again!");
   }
   console.log(userSetChars)
 
@@ -114,6 +116,7 @@ function generatePassword() {
 
   for (var i = 0; i < confirmLength; i++) {
   password.push(userSetChars[Math.floor(Math.random() * userSetChars.length)]);
+  //CONSOLE LOGGING TO MAKE SURE THIS FUNCTION WORKS PROPERLY
     console.log(password.join("+"));
   }
 
